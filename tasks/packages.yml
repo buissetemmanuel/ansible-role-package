@@ -4,7 +4,7 @@
   become: true
   when:
     - not ansible_check_mode
-    - package_state == present
+    - package_state == 'present'
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
@@ -14,12 +14,12 @@
   become: true
   when:
     - not ansible_check_mode
-    - package_state == absent
+    - package_state == 'absent'
   ansible.builtin.command: dnf autoremove
 
 - name: "{{ package_mode }} | dnf clean"
   become: true
   when:
     - not ansible_check_mode
-    - package_state == absent
+    - package_state == 'absent'
   ansible.builtin.command: dnf clean
