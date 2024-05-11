@@ -1,0 +1,8 @@
+---
+
+- name: Install (package_mode fact)
+  ansible.builtin.set_fact:
+    package_mode: "Install"
+
+- name: "{{ package_mode }} | packages"
+  ansible.builtin.include_tasks: packages.yml

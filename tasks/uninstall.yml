@@ -1,0 +1,8 @@
+---
+
+- name: Uninstall (package_mode fact)
+  ansible.builtin.set_fact:
+    package_mode: "Uninstall"
+
+- name: "{{ package_mode }} | packages"
+  ansible.builtin.include_tasks: packages.yml

@@ -1,0 +1,8 @@
+---
+
+# state of package - present=install - absent=uninstall
+package_state: present
+
+# list of packages to add
+package_packages: []
+#  - hello
