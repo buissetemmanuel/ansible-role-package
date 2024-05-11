@@ -16,10 +16,3 @@
     - not ansible_check_mode
     - package_state == 'absent'
   ansible.builtin.command: dnf autoremove -y
-
-- name: "{{ package_mode }} | dnf clean"
-  become: true
-  when:
-    - not ansible_check_mode
-    - package_state == 'absent'
-  ansible.builtin.command: dnf clean -y
