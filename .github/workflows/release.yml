@@ -16,7 +16,8 @@ permissions:
   contents: read
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.PAT_CLASSIC }}
+  SEMANTIC_RELEASE_PACKAGES: '@semantic-release/github'
 
 jobs:
   release:
