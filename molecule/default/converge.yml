@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    package_packages:
+      - { package: 'hello' }
+  tasks:
+    - name: Include buissetemmanuel.package
+      ansible.builtin.include_role:
+        name: buissetemmanuel.package

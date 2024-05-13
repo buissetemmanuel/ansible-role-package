@@ -1,14 +1,19 @@
 ---
 
+- name: DEBUG
+  ansible.builtin.debug:
+    var: package_packages
+
 - name: "{{ package_mode }} | packages"
   become: true
   when:
     - not ansible_check_mode
-    - package_state == 'present'
   ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
+    name: "{{ item.package }}"
+    state: "{{ 'absent' if item.force_remove is defined and item.force_remove else 'present' }}"
   loop: "{{ package_packages }}"
+  loop_control:
+    label: "{{ item.package }}"
 
 - name: "{{ package_mode }} | dnf autoremove"
   become: true
