@@ -3,7 +3,7 @@
   hosts: all
   vars:
     package_packages:
-      - { package: 'hello' }
+      - {package: 'hello'}
   tasks:
     - name: Include buissetemmanuel.package
       ansible.builtin.include_role:

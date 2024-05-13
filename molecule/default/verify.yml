@@ -4,7 +4,7 @@
   hosts: all
   vars:
     package_packages:
-      - { package: 'hello' }
+      - {package: 'hello'}
   tasks:
     - name: "Check package is installed"
       become: true
@@ -17,7 +17,7 @@
       vars:
         package_state: absent
         package_packages:
-          - { package: 'hello' }
+          - {package: 'hello'}
       ansible.builtin.include_role:
         name: buissetemmanuel.package
 
@@ -31,7 +31,7 @@
     - name: Include buissetemmanuel.package
       vars:
         package_packages:
-          - { package: 'hello', force_remove: true }
+          - {package: 'hello', force_remove: true}
       ansible.builtin.include_role:
         name: buissetemmanuel.package
 
