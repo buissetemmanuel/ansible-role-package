@@ -1,7 +1,6 @@
 [![MOLECULE LINT](https://github.com/buissetemmanuel/ansible-role-package/actions/workflows/molecule-lint.yml/badge.svg)](https://github.com/buissetemmanuel/ansible-role-package/actions/workflows/molecule-lint.yml)
 [![RELEASE](https://github.com/buissetemmanuel/ansible-role-package/actions/workflows/release.yml/badge.svg)](https://github.com/buissetemmanuel/ansible-role-package/actions/workflows/release.yml)
 
-
 Ansible Role Package
 =========
 
