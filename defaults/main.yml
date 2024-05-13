@@ -5,4 +5,4 @@ package_state: present
 
 # list of packages to add
 package_packages: []
-#  - hello
+#  - { package: 'hello', force_remove: false }

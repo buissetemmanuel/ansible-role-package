@@ -3,23 +3,10 @@
 - name: "{{ package_mode }} | packages"
   become: true
   when:
-    - not ansibe_check_mode
-    - package_state == present
+    - not ansible_check_mode
   ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
+    name: "{{ item.package }}"
+    state: "{{ 'absent' if item.force_remove is defined and item.force_remove else 'present' }}"
   loop: "{{ package_packages }}"
-
-- name: "{{ package_mode }} | dnf autoremove"
-  become: true
-  when:
-    - not ansibe_check_mode
-    - package_state == absent
-  ansible.builtin.command: dnf autoremove
-
-- name: "{{ package_mode }} | dnf clean"
-  become: true
-  when:
-    - not ansibe_check_mode
-    - package_state == absent
-  ansible.builtin.command: dnf clean
+  loop_control:
+    label: "{{ item.package }}"

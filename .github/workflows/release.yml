@@ -1,0 +1,25 @@
+---
+
+name: RELEASE
+
+'on':
+  workflow_run:
+    workflows: ["MOLECULE LINT"]
+    branches: [main]
+    types:
+      - completed
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    uses: buissetemmanuel/cicd-templates/.github/workflows/release.yml@main

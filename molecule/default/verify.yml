@@ -1,0 +1,43 @@
+---
+
+- name: Verify
+  hosts: all
+  vars:
+    package_packages:
+      - {package: 'hello'}
+  tasks:
+    - name: "Check package is installed"
+      become: true
+      ansible.builtin.command: dnf --showduplicates list --installed {{ item.package }}
+      loop: "{{ package_packages }}"
+      register: __verify_package_exist
+      changed_when: __verify_package_exist.rc != 0
+
+    - name: Include buissetemmanuel.package
+      vars:
+        package_state: absent
+        package_packages:
+          - {package: 'hello'}
+      ansible.builtin.include_role:
+        name: buissetemmanuel.package
+
+    - name: "Check package is always present"
+      become: true
+      ansible.builtin.command: dnf --showduplicates list --installed {{ item.package }}
+      loop: "{{ package_packages }}"
+      register: __verify_package_exist
+      changed_when: __verify_package_exist.rc != 0
+
+    - name: Include buissetemmanuel.package
+      vars:
+        package_packages:
+          - {package: 'hello', force_remove: true}
+      ansible.builtin.include_role:
+        name: buissetemmanuel.package
+
+    - name: "Check package is removed"
+      become: true
+      ansible.builtin.command: dnf --showduplicates list --installed {{ item.package }}
+      loop: "{{ package_packages }}"
+      register: __verify_package_exist
+      failed_when: __verify_package_exist.rc != 1
