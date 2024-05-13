@@ -15,8 +15,8 @@ name: RELEASE
 permissions:
   contents: read
 
-#env:
-#  GITHUB_TOKEN: ${{ secrets.PAT_CLASSIC }}
+env:
+  PAT_CLASSIC: ${{ secrets.PAT_CLASSIC }}
 #  SEMANTIC_RELEASE_PACKAGES: '@semantic-release/github'
 
 jobs:
@@ -25,5 +25,5 @@ jobs:
       contents: write
     uses: buissetemmanuel/cicd-templates/.github/workflows/release.yml@main
     with:
-      GITHUB_TOKEN: ${{ secrets.PAT_CLASSIC }}
+      GITHUB_TOKEN: ${{ PAT_CLASSIC }}
       SEMANTIC_RELEASE_PACKAGES: '@semantic-release/github'
