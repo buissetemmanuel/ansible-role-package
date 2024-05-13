@@ -6,7 +6,7 @@ name: RELEASE
   workflow_run:
     workflows: ["MOLECULE LINT"]
     branches: [main]
-    types: 
+    types:
       - completed
   push:
     branches:

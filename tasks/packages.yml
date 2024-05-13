@@ -1,9 +1,5 @@
 ---
 
-- name: DEBUG
-  ansible.builtin.debug:
-    var: package_packages
-
 - name: "{{ package_mode }} | packages"
   become: true
   when:
@@ -14,10 +10,3 @@
   loop: "{{ package_packages }}"
   loop_control:
     label: "{{ item.package }}"
-
-- name: "{{ package_mode }} | dnf autoremove"
-  become: true
-  when:
-    - not ansible_check_mode
-    - package_state == 'absent'
-  ansible.builtin.command: dnf autoremove -y
